@@ -1,0 +1,28 @@
+---
+ungrouped:
+  ansible_network_os: "ios"
+  hosts:
+    "192.168.1.201":
+  ansible_user: "john"
+  ansible_password: "demo"
+
+# euro_group:
+#   MGMT-196:
+#     hostname: "192.168.1.196"
+#     ansible_user: "john"
+#     ansible_password: "demo"
+#     data:
+#       ntp_server: "85.199.214.99"
+
+#   vIOS-197:
+#     hostname: "192.168.1.197"
+
+#   vIOS-199:
+#     hostname: "192.168.1.199"
+
+# usa_group:
+#   vIOS-198:
+#     hostname: "192.168.1.198"
+
+#   vIOS-200:
+#     hostname: "192.168.1.200"

@@ -1,0 +1,35 @@
+vIOS-196 ansible_host=192.168.1.196
+vIOS-201 ansible_host=192.168.1.201
+
+[euro_group]
+vIOS-197 ansible_host=192.168.1.197
+vIOS-199 ansible_host=192.168.1.199
+
+[usa_group]
+vIOS-198 ansible_host=192.168.1.198
+vIOS-200 ansible_host=192.168.1.200
+
+[ungrouped:vars]
+ansible_network_os=cisco.ios.ios
+ansible_ssh_user=john
+ansible_ssh_pass=demo
+ansible_connection=network_cli
+loopback201_ip=201.201.201.201
+
+[euro_group:vars]
+ansible_ssh_user=euro
+ansible_ssh_pass=europass
+ansible_network_os=cisco.ios.ios
+ansible_connection=network_cli
+
+[usa_group:vars]
+ansible_network_os=cisco.ios.ios
+ansible_ssh_user=usa
+ansible_ssh_pass=usapass
+ansible_connection=network_cli
+
+# common connection types for ansible_connection
+# network_cli
+# paramiko
+# ansible_username=john
+# ansible_pass=demo
