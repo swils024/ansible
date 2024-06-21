@@ -1,0 +1,9 @@
+---
+- name: "Playbook to install EEM SSH Recover Applet"
+  hosts: "ungrouped"
+  gather_facts: false
+  connection: "network_cli"
+  tasks:
+    - name: "Task 1: Load config from src"
+      cisco.ios.ios_config:
+        src: "eem_ssh_recover.txt"

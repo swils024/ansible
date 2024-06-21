@@ -1,0 +1,47 @@
+---
+- name: Ping Playbook
+  hosts: ungrouped
+  gather_facts: false
+  connection: network_cli
+
+  tasks:
+    - name: " Task 1: Check Loopback201 exists"
+      cisco.ios.ios_command:
+        commands: show interface Loopback201
+        wait_for: "result[0] contains interface Loopback201"
+      register: ios_output
+      ignore_errors: true
+
+
+    - name: "Task 2: Ping test"
+      ansible.netcommon.net_ping:
+        dest: "{{ loopback201_ip  }}"
+      register: task2_result
+      ignore_errors: true
+
+    - name: " Task 3: Show ping result from variable"
+      debug:
+        msg: "packet loss {{ task2_result }}"
+
+    - name: "Task 4: Ping failure action"
+      cisco.ios.ios_config:
+        lines:
+          - ip address 201.201.201.201 255.255.255.255
+          - no shutdown
+        parents:
+          - interface Loopback201
+      when: task2_result.failed
+
+    - name: "Wait 5"
+      ansible.builtin.wait_for:
+        timeout: 5
+
+
+    - name: "Task 5: Confirm successful ping test"
+      ansible.netcommon.net_ping:
+        dest: "{{ loopback201_ip }}"
+      register: ping_result_final
+
+    - name: "Task 6: Final ping"
+      debug:
+        msg: "{{ ping_result_final }}"
