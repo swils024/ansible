@@ -1,0 +1,177 @@
+---
+- name: Convert JSON to YAML
+  hosts: localhost
+  tasks:
+    - name: Load JSON data
+      set_fact:
+        my_json_data: |-
+          {
+              "Org1": {
+                  "devices": {
+                      "column_headers": [
+                          "Name",
+                          "Site",
+                          "MAC",
+                          "Model",
+                          "S/N",
+                          "Device Type"
+                      ],
+                      "column_order": [
+                          "name",
+                          "network",
+                          "mac",
+                          "model",
+                          "serial",
+                          "productType"
+                      ],
+                      "host_filtering" : false
+                  }
+              },
+
+              "Org2": {
+                  "devices": {
+                      "column_headers": [
+                          "name",
+                          "network",
+                          "model",
+                          "serial",
+                          "productType",
+                          "mac"
+                      ],
+                      "column_order": [
+                          "name",
+                          "network",
+                          "model",
+                          "serial",
+                          "productType",
+                          "mac"
+                      ],
+                      "host_filtering" : false
+                  }
+              },
+
+              "Org3": {
+                  "devices": {
+                      "column_headers": [
+                          "Hostname",
+                          "Site Name",
+                          "BFG Serial Number",
+                          "Device Type",
+                          "Address"
+                      ],
+                      "column_order": [
+                          "name",
+                          "network",
+                          "serial",
+                          "productType",
+                          "address"
+                      ],
+                      "transforms": {
+                          "productType": {
+                              "wireless": "Access Point",
+                              "appliance": "Firewall",
+                              "switch": "Switch",
+                              "sensor": "Sensor",
+                              "camera": "Camera"
+                          }
+                      },
+                      "host_filtering" : false,
+                      "updateAddress" : {
+                          "name" : [
+                              "DEV-015-GF-001"
+                          ],
+                          "address" : ""
+                      }
+                  }
+              },
+
+              "Org4": {
+                  "devices": {
+                      "column_headers": [
+                          "mac",
+                          "name",
+                          "network",
+                          "model",
+                          "serial",
+                          "productType"
+                      ],
+                      "column_order": [
+                          "mac",
+                          "name",
+                          "network",
+                          "model",
+                          "serial",
+                          "productType"
+                      ],
+                      "host_filtering" : true
+                  }
+              },
+
+              "Org5": {
+                  "devices": {
+                      "column_headers": [
+                          "Serial Number",
+                          "Hostname",
+                          "Management IP",
+                          "Site",
+                          "Manufacturer",
+                          "Device Role",
+                          "Model"
+                      ],
+                      "column_order": [
+                          "serial",
+                          "name",
+                          "custom_cloud",
+                          "custom_site",
+                          "custom_vendor",
+                          "productType",
+                          "model"
+                      ],
+                      "custom_site" : [
+                          "Site A",
+                          "Site B",
+                          "Site C"
+                      ],
+                      "transforms": {
+                          "productType": {
+                              "wireless": "AP",
+                              "appliance": "Meraki MX",
+                              "switch": "Switch",
+                              "sensor": "Sensor",
+                              "camera": "Camera"
+                          },
+                          "custom_cloud" : {
+                              "Cloud Dashboard" : "Cloud Dashboard"
+                          }
+                      },
+                      "host_filtering" : false
+
+                  }
+              },
+
+              "defaults": {
+                  "devices": {
+                      "column_headers": [
+                          "mac",
+                          "name",
+                          "network",
+                          "model",
+                          "serial",
+                          "productType"
+                      ],
+                      "column_order": [
+                          "mac",
+                          "name",
+                          "network",
+                          "model",
+                          "serial",
+                          "productType"
+                      ],
+                      "host_filtering" : false
+                  }
+              }
+          }
+    - name: Convert to YAML
+      debug:
+        var: my_json_data | from_json | to_nice_yaml
+
