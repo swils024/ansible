@@ -1,0 +1,11 @@
+---
+- name: Save when modified playbook
+  hosts: all
+  gather_facts: false
+  connection: network_cli
+
+  tasks:
+    - name: "Task 01: Check the startup-config against the running-config"
+      cisco.ios.ios_config:
+        diff_against: startup
+        save_when: modified
