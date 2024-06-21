@@ -6,7 +6,7 @@
 
   tasks:
     - name: "Create Loopback10 with description"
-      ios_config:
+      cisxo.ios.ios_config:
         lines:
            - description Configured by ansible
         parents:
