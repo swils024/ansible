@@ -6,7 +6,7 @@
 
   tasks:
     - name: " Task 1: Check Loopback201 exists"
-      cisco.ios.ios_command:
+      ios_command:
         commands: show interface Loopback201
         wait_for: "result[0] contains interface Loopback201"
       register: ios_output
@@ -24,7 +24,7 @@
         msg: "packet loss {{ task2_result }}"
 
     - name: "Task 4: Ping failure action"
-      cisco.ios.ios_config:
+      ios_config:
         lines:
           - ip address 201.201.201.201 255.255.255.255
           - no shutdown
