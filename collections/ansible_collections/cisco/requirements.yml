@@ -2,6 +2,6 @@
 namespace: cisco
 collections:
   # Install a collection from Ansible Galaxy.
-  - name: cisco.ios
+  - name: ios
     version: ">=5.3.0"
     source: https://galaxy.ansible.com
