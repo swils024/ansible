@@ -4,7 +4,7 @@
   gather_facts: false
   tasks:
     - name: Run python
-      ansible.builtin.shell: python ../test.py
+      ansible.builtin.shell: python test.py
     - name: Check log
       ansible.builtin.shell: cat /home/swils024/Documents/ansible/roles/common/logs/test.log
       register: result
