@@ -6,7 +6,7 @@
     - name: Run python
       ansible.builtin.shell: python test.py
     - name: Check log
-      ansible.builtin.shell: cat /home/swils024/Documents/ansible/roles/common/logs/test.log
+      ansible.builtin.shell: cat test.log
       register: result
     - name: "View Result"
       debug: var=result.stdout_lines
