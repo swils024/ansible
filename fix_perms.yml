@@ -4,4 +4,4 @@
   tasks:
   - name: Fix perms
     ansible.builtin.shell:
-      cmd: chown awx:awx /var/lib/awx/projects/
+      cmd: chmod 777 /var/lib/awx/projects/
