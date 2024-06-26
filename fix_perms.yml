@@ -1,0 +1,7 @@
+---
+- name: Install AWX
+  hosts: localhost
+  become: yes
+  - name: Move Kustomize to the /usr/local/bin directory
+    ansible.builtin.shell:
+      cmd: chown awx:1000 /var/lib/awx/projects/
