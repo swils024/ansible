@@ -1,7 +1,6 @@
 ---
-- name: Install AWX
+- name: Fix perms playbook
   hosts: localhost
-  become: true
   tasks:
   - name: Fix perms
     ansible.builtin.shell:
