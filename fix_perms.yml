@@ -1,7 +1,0 @@
----
-- name: Fix perms playbook
-  hosts: localhost
-  tasks:
-  - name: Fix perms
-    ansible.builtin.shell:
-      cmd: chmod 777 /var/lib/awx/projects/
